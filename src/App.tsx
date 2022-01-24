@@ -1,26 +1,30 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import {Route} from 'react-router';
+import Menu from './Menu/Menu';
+import Home from './Home/Home';
+import NavBar from './NavBar/NavBar';
+import Checkout from './Checkout/Checkout';
+
+const navigation = {
+  brand: {name: "FakePizza", to: "/" },
+  links: [
+    {name: "Menu", to: "/menu"},
+    {name: "Orders", to: "/Orders"}
+  ]
+};
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+  const {brand, links} = navigation;
+
+  return(
+    <>
+    <NavBar brand={brand} links ={links}/>
+    <Route exact path='/' component={Home} />
+    <Route path='/menu' component={Menu}/>
+    <Route path='/checkout' 
+    component={Checkout} 
+
+    />
+    </>
   );
 }
-
 export default App;
